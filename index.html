@@ -480,69 +480,7 @@
                 </div>
               </div>
             </div>
-            <script>
-             src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous">
-              $(document).ready(function(){
-                const settings = {
-	async: true,
-	crossDomain: true,
-	url: 'https://dark-sky.p.rapidapi.com/37.774929,-122.419418,2019-02-20',
-	method: 'GET',
-	headers: {
-		'content-type': 'application/octet-stream',
-		'X-RapidAPI-Key': '41db5e3025msh0f185e100e9ca11p17b575jsn3ad7e84dc161',
-		'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'
-	}
-};
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
-              })
-              $(document).ready(function() {
-  // API endpoint
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
-
-  // API key
-  var apiKey = '433459099826eb3884978bde41f5bd0d';
-
-  // Get user's location
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var lat = position.coords.latitude;
-      var lon = position.coords.longitude;
-
-      // Make API request
-      $.ajax({
-        url: apiUrl,
-        method: 'GET',
-        dataType: 'json',
-        data: {
-          lat: lat,
-          lon: lon,
-          appid: apiKey,
-          units: 'metric'
-        },
-        success: function(response) {
-          // Get the location and weather data from the API response
-          var location = response.name + ', ' + response.sys.country;
-          var weather = response.weather[0].description;
-          var temperature = response.main.temp;
-          
-          // Update the HTML with the location and weather data
-          $('#myweather').text(location);
-          $('#myweather').text(weather);
-          $('#mytemp').text(temperature);
-        },
-        error: function(error) {
-          console.log(error);
-        }
-      });
-    });
-  }
-});
-
-            </script>
             <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">

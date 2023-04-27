@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Bilal Web</title>
+  <title>EduSpace LMS</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/feather/feather.css">
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
@@ -307,6 +307,37 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Courses</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Departments</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Timetable</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Students</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Teachers</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-layout menu-icon"></i>
               <span class="menu-title">UI Elements</span>
@@ -409,12 +440,12 @@
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Aamir</h3>
-                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                  <h3 class="font-weight-bold">Welcome Bilal</h3>
+                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! </h6>
                 </div>
                 <div class="col-12 col-xl-4">
                  <div class="justify-content-end d-flex">
-                  <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                  <!-- <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                     <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                      <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
                     </button>
@@ -424,7 +455,7 @@
                       <a class="dropdown-item" href="#">June - August</a>
                       <a class="dropdown-item" href="#">August - November</a>
                     </div>
-                  </div>
+                  </div> -->
                  </div>
                 </div>
               </div>
@@ -438,32 +469,95 @@
                   <div class="weather-info">
                     <div class="d-flex">
                       <div>
-                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                        <h2 class="mb-0 font-weight-normal" id="mytemp"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
                       </div>
                       <div class="ml-2">
-                        <h4 class="location font-weight-normal">Bangalore</h4>
-                        <h6 class="font-weight-normal">India</h6>
+                        <h4 class="location font-weight-normal" id="myweather">Lahore</h4>
+                        <h6 class="font-weight-normal" id="myloc">Pakistan</h6>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <script>
+             src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous">
+              $(document).ready(function(){
+                const settings = {
+	async: true,
+	crossDomain: true,
+	url: 'https://dark-sky.p.rapidapi.com/37.774929,-122.419418,2019-02-20',
+	method: 'GET',
+	headers: {
+		'content-type': 'application/octet-stream',
+		'X-RapidAPI-Key': '41db5e3025msh0f185e100e9ca11p17b575jsn3ad7e84dc161',
+		'X-RapidAPI-Host': 'dark-sky.p.rapidapi.com'
+	}
+};
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
+              })
+              $(document).ready(function() {
+  // API endpoint
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
+
+  // API key
+  var apiKey = '433459099826eb3884978bde41f5bd0d';
+
+  // Get user's location
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+
+      // Make API request
+      $.ajax({
+        url: apiUrl,
+        method: 'GET',
+        dataType: 'json',
+        data: {
+          lat: lat,
+          lon: lon,
+          appid: apiKey,
+          units: 'metric'
+        },
+        success: function(response) {
+          // Get the location and weather data from the API response
+          var location = response.name + ', ' + response.sys.country;
+          var weather = response.weather[0].description;
+          var temperature = response.main.temp;
+          
+          // Update the HTML with the location and weather data
+          $('#myweather').text(location);
+          $('#myweather').text(weather);
+          $('#mytemp').text(temperature);
+        },
+        error: function(error) {
+          console.log(error);
+        }
+      });
+    });
+  }
+});
+
+            </script>
             <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">Today’s Bookings</p>
+                      <p class="mb-4">Number of Students</p>
                       <p class="fs-30 mb-2">4006</p>
-                      <p>10.00% (30 days)</p>
+                      <p>Date of modification</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
-                      <p class="mb-4">Total Bookings</p>
+                      <p class="mb-4">Total Teachers</p>
                       <p class="fs-30 mb-2">61344</p>
                       <p>22.00% (30 days)</p>
                     </div>
@@ -474,7 +568,7 @@
                 <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
                   <div class="card card-light-blue">
                     <div class="card-body">
-                      <p class="mb-4">Number of Meetings</p>
+                      <p class="mb-4">Number of Departments</p>
                       <p class="fs-30 mb-2">34040</p>
                       <p>2.00% (30 days)</p>
                     </div>

@@ -133,6 +133,19 @@
     opacity: 1;
   }
 }
+.password-container input[type="password"],
+  .password-container input[type="text"]{
+    width: 100%;
+    padding: 12px 36px 12px 12px;
+    box-sizing: border-box;
+  }.fa-eye{
+    position: absolute;
+    top: 56%;
+    right: 18%;
+    cursor: pointer;
+    color: lightgray;
+  }
+  
 
 @-webkit-keyframes flash {
   0% {

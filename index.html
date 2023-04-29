@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://kit.fontawesome.com/0fd7b457b6.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -439,16 +440,76 @@
           <div class="row" >
             <div class="col-md-12 grid-margin">
               <div class="row">
-                
+                <script>
+                  $(document).ready(function() {
+          
+            // Get user's location
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                var lata = position.coords.latitude;
+                var lona = position.coords.longitude;
+                console.log('hello');
+                // Make API request
+                $.ajax({
+                  url: 'https://api.openweathermap.org/data/2.5/weather',
+                  method: 'GET',
+                  dataType: 'json',
+                  data: {
+                    lat: position.coords.latitude,
+                    lon: position.coords.longitude,
+                    appid: '433459099826eb3884978bde41f5bd0d',
+                    units: 'metric'
+                  },
+                  success: function(response) {
+                    // Get the location and weather data from the API response
+                    var location = response.name + ', ' + response.sys.country;
+                    var weather = response.weather[0].description;
+                    var temperature = response.main.temp;
+                    var myhtml = 
+                    '<div class="d-flex">'+
+                      '<h2 class="mb-0 font-weight-normal">'+ response.main.temp +'<sup> '+"C"+
+                    ' </sup> </h2> </div>'+
+                    '<div class="ml-2"><h4 '+'class="location font-weight-normal"'+'>'+response.name+
+                      '<h6'+' class="font-weight-normal"'+'>Pakistan</h6>'+
+                      '</div>';
+
+
+                    $('#myweatherdetail').html(myhtml);
+                    // // 
+                    // <div class="d-flex">
+                    //   <div>
+                    //     <h2 class="mb-0 font-weight-normal" id="mytemp">31<sup>C</sup></h2>
+                    //   </div>
+                    //   <div class="ml-2">
+                    //     <h4 class="location font-weight-normal" id="myweather" >Gujranwala</h4>
+                    //     <h6 class="font-weight-normal" id="myloc">Pakistan</h6>
+                    //   </div>
+                    //  
+                    //   '
+                    
+                    // Update the HTML with the location and weather data
+                    console.log(location);
+                    console.log(temperature);
+                    $('#mycity').text(location);
+                    $('#weather').text(weather);
+                    $('#mytemp').text(temperature);
+                  },
+                  error: function(error) {
+                       if (error.code == error.PERMISSION_DENIED) {
+                        
+                        $('#myweatherdetail').html('<p>Location Permission Required </p>');
+                }
+                    console.log(error);
+                  }
+                });
+              });
+            }
+          });
+          
+              </script>
                   <div class="weather-info">
-                    <div class="d-flex">
-                      <div>
-                        <h2 class="mb-0 font-weight-normal" id="mytemp">31<sup>C</sup></h2>
-                      </div>
-                      <div class="ml-2">
-                        <h4 class="location font-weight-normal" id="myweather" >Gujranwala</h4>
-                        <h6 class="font-weight-normal" id="myloc">Pakistan</h6>
-                      </div>
+                    <div class="d-flex" id="myweatherdetail">
+                     
                     </div>
                   </div>  
              

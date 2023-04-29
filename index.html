@@ -464,10 +464,10 @@
                     // Get the location and weather data from the API response
                     var location = response.name + ', ' + response.sys.country;
                     var weather = response.weather[0].description;
-                    var temperature = response.main.temp;
+                    var temperature = Math.ceil(response.main.temp);
                     var myhtml = 
                     '<div class="d-flex">'+
-                      '<h2 class="mb-0 font-weight-normal">'+ response.main.temp +'<sup> '+"C"+
+                      '<h2 class="mb-0 font-weight-normal">'+ temperature +'<sup> '+"C"+
                     ' </sup> </h2> </div>'+
                     '<div class="ml-2"><h4 '+'class="location font-weight-normal"'+'>'+response.name+
                       '<h6'+' class="font-weight-normal"'+'>Pakistan</h6>'+

@@ -6,7 +6,7 @@ learners to create personalized learning environments.
 <h1>Demo</h1>
 Click below to check out the live demo.
 
-[![N|Solid](preview.jpg)](https://bootstrapdash.com/demo/skydash-free/template/)
+[![N|Solid](preview.png)](https://bootstrapdash.com/demo/skydash-free/template/)
 
 
 #### Credits:

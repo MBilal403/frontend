@@ -4,7 +4,7 @@ EduSpace is a learning platform designed to provide educators, administrators an
 learners to create personalized learning environments.
 
 <h1>Demo</h1>
-Click below to check out the live demo.
+Ali Mirza
 
 [![N|Solid](preview.png)](https://bootstrapdash.com/demo/skydash-free/template/)
 
